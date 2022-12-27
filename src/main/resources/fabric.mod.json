@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "noportals",
+  "version": "${version}",
+
+  "name": "No Portals",
+  "description": "Disables portals",
+  "authors": [
+    "Kevinthegreat"
+  ],
+  "contact": {
+    "homepage": "https://github.com/kevinthegreat1/NoPortals-Fabric",
+    "sources": "https://github.com/kevinthegreat1/NoPortals-Fabric",
+    "issues": "https://github.com/kevinthegreat1/NoPortals-Fabric/issues"
+  },
+
+  "license": "GPL-3.0-or-later",
+  "icon": "assets/noportals/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+  },
+  "mixins": [
+    "noportals.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14",
+    "minecraft": ">=1.18",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
