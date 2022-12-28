@@ -1,7 +1,7 @@
 # No Portals
 
 Disable Nether Portals, End Portals, and End Gateways at your will.  
-Tested in 1.18.2 and 1.19.3 but should work on 1.18 and above.
+Tested in 1.19.2 and 1.19.3.
 
 ## Options
 

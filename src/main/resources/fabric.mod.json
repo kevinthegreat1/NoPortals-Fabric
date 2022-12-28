@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "No Portals",
-  "description": "Disables portals",
+  "description": "Disable Nether Portals, End Portals, and End Gateways at your will",
   "authors": [
     "Kevinthegreat"
   ],
