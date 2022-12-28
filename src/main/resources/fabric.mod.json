@@ -19,6 +19,9 @@
 
   "environment": "*",
   "entrypoints": {
+    "main": [
+      "com.kevinthegreat.noportals.NoPortals"
+    ]
   },
   "mixins": [
     "noportals.mixins.json"
@@ -26,6 +29,7 @@
 
   "depends": {
     "fabricloader": ">=0.14",
+    "fabric": "*",
     "minecraft": ">=1.18",
     "java": ">=17"
   },
