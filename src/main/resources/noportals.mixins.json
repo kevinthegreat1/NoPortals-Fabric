@@ -4,7 +4,9 @@
   "package": "com.kevinthegreat.noportals.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "EndPortalBlockMixin"
+    "EndGatewayBlockEntityMixin",
+    "EndPortalBlockMixin",
+    "NetherPortalBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1
