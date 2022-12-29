@@ -1,0 +1,9 @@
+{
+    "noportals:disabled.end": "El End está desactivado en este servidor.",
+    "noportals:disabled.endGateway": "Los nexos del End están desactivadas en este servidor.",
+    "noportals:disabled.nether": "El Nether está desactivado en este servidor.",
+    "noportals:commands.option.reload": "Se han recargado las opciones de No Portals",
+    "noportals:commands.option.save": "Se han guardado las opciones de No Portals",
+    "noportals:commands.option.query": "La opción %s de No Portals está establecida actualmente en: %s",
+    "noportals:commands.option.set": "Se ha establecido la opción %s de No Portals en: %s"
+}
