@@ -1,0 +1,9 @@
+{
+    "noportals:disabled.end": "Эндер мир отключён на этом сервере.",
+    "noportals:disabled.endGateway": "Врата края отключены на этом сервере.",
+    "noportals:disabled.nether": "Нижний мир отключён на этом сервере.",
+    "noportals:commands.option.reload": "Настройки No Portals перезагружены",
+    "noportals:commands.option.save": "Настройки No Portals сохранены",
+    "noportals:commands.option.query": "Параметр No Portals %s в настоящее время установлен на: %s",
+    "noportals:commands.option.set": "Параметр No Portals %s теперь установлен на: %s"
+}
