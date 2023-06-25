@@ -29,12 +29,12 @@ public class NoPortals implements ModInitializer {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal(MOD_ID).requires(source -> source.hasPermissionLevel(2))
                 .then(literal("reload").executes(context -> {
                     options = new NoPortalsOptions(context.getSource().getServer());
-                    context.getSource().sendFeedback(Text.translatable(MOD_ID + ":commands.option.reload").formatted(Formatting.GREEN), true);
+                    context.getSource().sendFeedback(() -> Text.translatable(MOD_ID + ":commands.option.reload").formatted(Formatting.GREEN), true);
                     return Command.SINGLE_SUCCESS;
                 }))
                 .then(literal("save").executes(context -> {
                     options.save();
-                    context.getSource().sendFeedback(Text.translatable(MOD_ID + ":commands.option.save").formatted(Formatting.GREEN), true);
+                    context.getSource().sendFeedback(() -> Text.translatable(MOD_ID + ":commands.option.save").formatted(Formatting.GREEN), true);
                     return Command.SINGLE_SUCCESS;
                 }))
                 .then(argument("option", StringArgumentType.string()).suggests((context, builder) -> {
@@ -47,11 +47,11 @@ public class NoPortals implements ModInitializer {
                             String option = StringArgumentType.getString(context, "option");
                             boolean value = BoolArgumentType.getBool(context, "value");
                             options.options.get(option).setValue(value);
-                            context.getSource().sendFeedback(Text.translatable(MOD_ID + ":commands.option.set", option, value).formatted(Formatting.GREEN), true);
+                            context.getSource().sendFeedback(() -> Text.translatable(MOD_ID + ":commands.option.set", option, value).formatted(Formatting.GREEN), true);
                             return Command.SINGLE_SUCCESS;
                         }))
                         .executes(context -> {
-                            context.getSource().sendFeedback(Text.translatable(MOD_ID + ":commands.option.query", StringArgumentType.getString(context, "option"), options.options.get(StringArgumentType.getString(context, "option")).getValue()).formatted(Formatting.GREEN), false);
+                            context.getSource().sendFeedback(() -> Text.translatable(MOD_ID + ":commands.option.query", StringArgumentType.getString(context, "option"), options.options.get(StringArgumentType.getString(context, "option")).getValue()).formatted(Formatting.GREEN), false);
                             return Command.SINGLE_SUCCESS;
                         }))));
         LOGGER.info(MOD_NAME + " initialized.");
