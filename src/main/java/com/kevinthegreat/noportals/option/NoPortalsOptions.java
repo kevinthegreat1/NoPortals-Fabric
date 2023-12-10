@@ -10,19 +10,24 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Util;
 import net.minecraft.util.WorldSavePath;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Map;
 
 public class NoPortalsOptions {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private final File optionsFile;
+    private final Path optionsFile;
     public final SimpleBooleanOption disableNetherPortal = new SimpleBooleanOption();
     public final SimpleBooleanOption disableEndPortal = new SimpleBooleanOption();
     public final SimpleBooleanOption disableEndGateway = new SimpleBooleanOption();
     public final Map<String, SimpleBooleanOption> options = ImmutableMap.of("disableNetherPortal", disableNetherPortal, "disableEndPortal", disableEndPortal, "disableEndGateway", disableEndGateway);
 
     public NoPortalsOptions(MinecraftServer server) {
-        this.optionsFile = server.getSavePath(WorldSavePath.ROOT).resolve(NoPortals.MOD_ID + ".json").toFile();
+        this.optionsFile = server.getSavePath(WorldSavePath.ROOT).resolve(NoPortals.MOD_ID + ".json");
         load();
     }
 
@@ -42,11 +47,11 @@ public class NoPortalsOptions {
      * Loads options from {@link #optionsFile} with Gson.
      */
     public void load() {
-        if (!optionsFile.exists()) {
+        if (!Files.isRegularFile(optionsFile)) {
             return;
         }
         JsonObject optionsJson;
-        try (BufferedReader reader = new BufferedReader(new FileReader(optionsFile))) {
+        try (BufferedReader reader = Files.newBufferedReader(optionsFile)) {
             optionsJson = JsonParser.parseReader(reader).getAsJsonObject();
         } catch (FileNotFoundException e) {
             NoPortals.LOGGER.warn("Options file not found", e);
@@ -76,19 +81,19 @@ public class NoPortalsOptions {
     public void save() {
         JsonObject optionsJson = new JsonObject();
         options.entrySet().forEach(option -> saveOption(optionsJson, option));
-        File tempFile;
+        Path tempFile;
         try {
-            tempFile = File.createTempFile(NoPortals.MOD_ID, ".json", optionsFile.getParentFile());
+            tempFile = Files.createTempFile(optionsFile.getParent(), NoPortals.MOD_ID, ".json");
         } catch (IOException e) {
             NoPortals.LOGGER.error("Failed to save options file", e);
             return;
         }
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+        try (BufferedWriter writer = Files.newBufferedWriter(tempFile)) {
             GSON.toJson(optionsJson, writer);
         } catch (IOException e) {
             NoPortals.LOGGER.error("Failed to write options", e);
         }
-        File backup = new File(optionsFile.getParentFile(), NoPortals.MOD_ID + ".json_old");
+        Path backup = optionsFile.getParent().resolve( NoPortals.MOD_ID + ".json_old");
         Util.backupAndReplace(optionsFile, tempFile, backup);
     }
 
