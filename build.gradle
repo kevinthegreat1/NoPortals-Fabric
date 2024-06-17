@@ -86,6 +86,7 @@ publishMods {
 		minecraftVersions.add("1.20.3")
 		minecraftVersions.add("1.20.4")
 		minecraftVersions.add("1.20.5")
+		minecraftVersions.add("1.21")
 		requires("fabric-api")
 	}
 	modrinth {
@@ -94,6 +95,7 @@ publishMods {
 		minecraftVersions.add("1.20.3")
 		minecraftVersions.add("1.20.4")
 		minecraftVersions.add("1.20.5")
+		minecraftVersions.add("1.21")
 	}
 	github {
 		repository = "kevinthegreat1/NoPortals-Fabric"
