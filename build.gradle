@@ -83,18 +83,12 @@ publishMods {
 		projectId = "782514"
 		projectSlug = "no-portals" // Required for discord webhook
 		accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
-		minecraftVersions.add("1.20.3")
-		minecraftVersions.add("1.20.4")
-		minecraftVersions.add("1.20.5")
 		minecraftVersions.add("1.21")
 		requires("fabric-api")
 	}
 	modrinth {
 		projectId = "ZzkyvOit"
 		accessToken = providers.environmentVariable("MODRINTH_TOKEN")
-		minecraftVersions.add("1.20.3")
-		minecraftVersions.add("1.20.4")
-		minecraftVersions.add("1.20.5")
 		minecraftVersions.add("1.21")
 	}
 	github {
