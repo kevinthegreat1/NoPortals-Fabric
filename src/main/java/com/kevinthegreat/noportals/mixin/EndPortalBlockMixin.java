@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(EndPortalBlock.class)
 public abstract class EndPortalBlockMixin {
     @Inject(method = "onEntityCollision", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getRegistryKey()Lnet/minecraft/registry/RegistryKey;"), cancellable = true)
-    private void noportals_disableEndPortal(BlockState state, World world, BlockPos pos, Entity entity, CallbackInfo ci) {
+    private void noportals$disableEndPortal(BlockState state, World world, BlockPos pos, Entity entity, CallbackInfo ci) {
         if (NoPortals.getOptions().isEndPortalDisabled()) {
             if (entity instanceof PlayerEntity player) {
                 NoPortals.sendPortalDisabledMessage(player, NoPortals.MOD_ID + ":disabled.end");
