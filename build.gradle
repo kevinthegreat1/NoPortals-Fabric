@@ -84,7 +84,7 @@ publishMods {
 		projectSlug = "no-portals" // Required for discord webhook
 		accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
 		minecraftVersionRange {
-			start = "1.21"
+			start = "1.21.2"
 			end = "1.21.3"
 		}
 		requires("fabric-api")
@@ -93,7 +93,7 @@ publishMods {
 		projectId = "ZzkyvOit"
 		accessToken = providers.environmentVariable("MODRINTH_TOKEN")
 		minecraftVersionRange {
-			start = "1.21"
+			start = "1.21.2"
 			end = "1.21.3"
 		}
 	}
