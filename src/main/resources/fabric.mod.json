@@ -21,6 +21,9 @@
   "entrypoints": {
     "main": [
       "com.kevinthegreat.noportals.NoPortals"
+    ],
+    "fabric-gametest": [
+      "com.kevinthegreat.noportals.NoPortalsTest"
     ]
   },
   "mixins": [
