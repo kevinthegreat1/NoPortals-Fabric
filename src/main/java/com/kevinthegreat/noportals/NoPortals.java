@@ -1,6 +1,7 @@
 package com.kevinthegreat.noportals;
 
 import com.kevinthegreat.noportals.option.NoPortalsOptions;
+import com.kevinthegreat.noportals.option.SimpleBooleanOption;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -59,7 +60,7 @@ public class NoPortals implements ModInitializer {
         return options;
     }
 
-    public static void sendPortalDisabledMessage(PlayerEntity player, String message) {
-        player.sendMessage(Text.translatable(message).formatted(Formatting.BOLD, Formatting.RED), true);
+    public static void sendPortalDisabledMessage(PlayerEntity player, SimpleBooleanOption option) {
+        player.sendMessage(Text.translatable(MOD_ID + ":disabled." + option.getTranslationKey()).formatted(Formatting.BOLD, Formatting.RED), true);
     }
 }
