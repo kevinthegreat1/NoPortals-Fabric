@@ -1,20 +1,19 @@
 package com.kevinthegreat.noportals;
 
 import com.kevinthegreat.noportals.option.SimpleBooleanOption;
-import net.fabricmc.fabric.api.gametest.v1.FabricGameTest;
+import net.fabricmc.fabric.api.gametest.v1.GameTest;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
-import net.minecraft.test.GameTest;
 import net.minecraft.test.TestContext;
 
-public class NoPortalsTest implements FabricGameTest {
-    @GameTest(templateName = EMPTY_STRUCTURE)
+public class NoPortalsTest {
+    @GameTest
     public void testDisableNetherPortal(TestContext context) {
         testDisablePortal(context, Blocks.NETHER_PORTAL, NoPortals.getOptions().disableNetherPortal);
     }
 
-    @GameTest(templateName = EMPTY_STRUCTURE)
+    @GameTest
     public void testDisableEndPortal(TestContext context) {
         testDisablePortal(context, Blocks.END_PORTAL, NoPortals.getOptions().disableEndPortal);
     }
