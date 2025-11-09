@@ -1,4 +1,9 @@
-## No Portals 1.1.5 for 1.21.9
+## No Portals 1.1.7 for 1.21.10
+
+Update to 1.21.10
+
+
+## No Portals 1.1.6 for 1.21.9
 
 Update to 1.21.9 
 Update Server Translation API to 2.5.2
