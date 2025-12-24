@@ -9,6 +9,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.command.CommandManager;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import org.slf4j.Logger;
@@ -27,7 +28,7 @@ public class NoPortals implements ModInitializer {
     public void onInitialize() {
         ServerLifecycleEvents.SERVER_STARTED.register(server -> options = new NoPortalsOptions(server));
         ServerLifecycleEvents.SERVER_STOPPING.register(server -> options.save());
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal(MOD_ID).requires(source -> source.hasPermissionLevel(2))
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal(MOD_ID).requires(CommandManager.requirePermissionLevel(CommandManager.GAMEMASTERS_CHECK))
                 .then(literal("reload").executes(context -> {
                     options = new NoPortalsOptions(context.getSource().getServer());
                     context.getSource().sendFeedback(() -> Text.translatable(MOD_ID + ":commands.option.reload").formatted(Formatting.GREEN), true);
