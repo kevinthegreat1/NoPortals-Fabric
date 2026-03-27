@@ -1,7 +1,7 @@
 plugins {
-	id 'fabric-loom' version '1.14-SNAPSHOT'
+	id 'net.fabricmc.fabric-loom' version '1.15-SNAPSHOT'
 	id 'maven-publish'
-	id "me.modmuss50.mod-publish-plugin" version "0.7.4"
+	id 'me.modmuss50.mod-publish-plugin' version '1.1.0'
 }
 
 version = project.mod_version
@@ -18,13 +18,12 @@ repositories {
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings loom.officialMojangMappings()
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	include modImplementation("xyz.nucleoid:server-translations-api:${project.server_translations_version}")
+	include implementation("xyz.nucleoid:server-translations-api:${project.server_translations_version}")
 }
 
 loom {
@@ -49,7 +48,7 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 21
+	it.options.release = 25
 }
 
 java {
@@ -58,8 +57,8 @@ java {
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
 
-	sourceCompatibility = JavaVersion.VERSION_21
-	targetCompatibility = JavaVersion.VERSION_21
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
 }
 
 jar {
@@ -86,7 +85,7 @@ publishing {
 }
 
 publishMods {
-	file = remapJar.archiveFile
+	file = jar.archiveFile
 	displayName = "No Portals ${mod_version} for ${minecraft_version}"
 	changelog = rootProject.file("CHANGELOG.md").text
 	type = STABLE
@@ -97,8 +96,8 @@ publishMods {
 		projectSlug = "no-portals" // Required for discord webhook
 		accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
 		minecraftVersionRange {
-			start = "1.21.11"
-			end = "1.21.11"
+			start = "26.1"
+			end = "26.1"
 		}
 		requires("fabric-api")
 	}
@@ -106,8 +105,8 @@ publishMods {
 		projectId = "ZzkyvOit"
 		accessToken = providers.environmentVariable("MODRINTH_TOKEN")
 		minecraftVersionRange {
-			start = "1.21.11"
-			end = "1.21.11"
+			start = "26.1"
+			end = "26.1"
 		}
 	}
 	github {

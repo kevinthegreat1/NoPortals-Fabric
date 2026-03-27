@@ -27,8 +27,8 @@ public class NoPortals implements ModInitializer {
     @Override
     public void onInitialize() {
         ServerLifecycleEvents.SERVER_STARTED.register(server -> options = new NoPortalsOptions(server));
-        ServerLifecycleEvents.SERVER_STOPPING.register(server -> options.save());
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal(MOD_ID).requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
+        ServerLifecycleEvents.SERVER_STOPPING.register(_ -> options.save());
+        CommandRegistrationCallback.EVENT.register((dispatcher, _, _) -> dispatcher.register(literal(MOD_ID).requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
                 .then(literal("reload").executes(context -> {
                     options = new NoPortalsOptions(context.getSource().getServer());
                     context.getSource().sendSuccess(() -> Component.translatable(MOD_ID + ":commands.option.reload").withStyle(ChatFormatting.GREEN), true);
@@ -62,6 +62,6 @@ public class NoPortals implements ModInitializer {
     }
 
     public static void sendPortalDisabledMessage(Player player, SimpleBooleanOption option) {
-        player.displayClientMessage(Component.translatable(MOD_ID + ":disabled." + option.getTranslationKey()).withStyle(ChatFormatting.BOLD, ChatFormatting.RED), true);
+        player.sendOverlayMessage(Component.translatable(MOD_ID + ":disabled." + option.getTranslationKey()).withStyle(ChatFormatting.BOLD, ChatFormatting.RED));
     }
 }
