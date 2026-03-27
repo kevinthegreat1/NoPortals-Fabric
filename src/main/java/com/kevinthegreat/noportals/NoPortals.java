@@ -8,15 +8,15 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.commands.Commands;
+import net.minecraft.network.chat.Component;
+import net.minecraft.ChatFormatting;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static net.minecraft.server.command.CommandManager.argument;
-import static net.minecraft.server.command.CommandManager.literal;
+import static net.minecraft.commands.Commands.argument;
+import static net.minecraft.commands.Commands.literal;
 
 public class NoPortals implements ModInitializer {
     public static final String MOD_ID = "noportals";
@@ -28,14 +28,14 @@ public class NoPortals implements ModInitializer {
     public void onInitialize() {
         ServerLifecycleEvents.SERVER_STARTED.register(server -> options = new NoPortalsOptions(server));
         ServerLifecycleEvents.SERVER_STOPPING.register(server -> options.save());
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal(MOD_ID).requires(CommandManager.requirePermissionLevel(CommandManager.GAMEMASTERS_CHECK))
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal(MOD_ID).requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
                 .then(literal("reload").executes(context -> {
                     options = new NoPortalsOptions(context.getSource().getServer());
-                    context.getSource().sendFeedback(() -> Text.translatable(MOD_ID + ":commands.option.reload").formatted(Formatting.GREEN), true);
+                    context.getSource().sendSuccess(() -> Component.translatable(MOD_ID + ":commands.option.reload").withStyle(ChatFormatting.GREEN), true);
                     return Command.SINGLE_SUCCESS;
                 })).then(literal("save").executes(context -> {
                     options.save();
-                    context.getSource().sendFeedback(() -> Text.translatable(MOD_ID + ":commands.option.save").formatted(Formatting.GREEN), true);
+                    context.getSource().sendSuccess(() -> Component.translatable(MOD_ID + ":commands.option.save").withStyle(ChatFormatting.GREEN), true);
                     return Command.SINGLE_SUCCESS;
                 })).then(argument("option", StringArgumentType.string()).suggests((context, builder) -> {
                             String input = context.getInput();
@@ -46,10 +46,10 @@ public class NoPortals implements ModInitializer {
                             String option = StringArgumentType.getString(context, "option");
                             boolean value = BoolArgumentType.getBool(context, "value");
                             options.options.get(option).setValue(value);
-                            context.getSource().sendFeedback(() -> Text.translatable(MOD_ID + ":commands.option.set", option, String.valueOf(value)).formatted(Formatting.GREEN), true);
+                            context.getSource().sendSuccess(() -> Component.translatable(MOD_ID + ":commands.option.set", option, String.valueOf(value)).withStyle(ChatFormatting.GREEN), true);
                             return Command.SINGLE_SUCCESS;
                         })).executes(context -> {
-                            context.getSource().sendFeedback(() -> Text.translatable(MOD_ID + ":commands.option.query", StringArgumentType.getString(context, "option"), String.valueOf(options.options.get(StringArgumentType.getString(context, "option")).getValue())).formatted(Formatting.GREEN), false);
+                            context.getSource().sendSuccess(() -> Component.translatable(MOD_ID + ":commands.option.query", StringArgumentType.getString(context, "option"), String.valueOf(options.options.get(StringArgumentType.getString(context, "option")).getValue())).withStyle(ChatFormatting.GREEN), false);
                             return Command.SINGLE_SUCCESS;
                         })
                 )
@@ -61,7 +61,7 @@ public class NoPortals implements ModInitializer {
         return options;
     }
 
-    public static void sendPortalDisabledMessage(PlayerEntity player, SimpleBooleanOption option) {
-        player.sendMessage(Text.translatable(MOD_ID + ":disabled." + option.getTranslationKey()).formatted(Formatting.BOLD, Formatting.RED), true);
+    public static void sendPortalDisabledMessage(Player player, SimpleBooleanOption option) {
+        player.displayClientMessage(Component.translatable(MOD_ID + ":disabled." + option.getTranslationKey()).withStyle(ChatFormatting.BOLD, ChatFormatting.RED), true);
     }
 }

@@ -6,13 +6,13 @@ import com.kevinthegreat.noportals.NoPortals;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.JsonOps;
-import net.minecraft.block.Block;
-import net.minecraft.block.EndGatewayBlock;
-import net.minecraft.block.EndPortalBlock;
-import net.minecraft.block.NetherPortalBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EndGatewayBlock;
+import net.minecraft.world.level.block.EndPortalBlock;
+import net.minecraft.world.level.block.NetherPortalBlock;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Util;
-import net.minecraft.util.WorldSavePath;
+import net.minecraft.world.level.storage.LevelResource;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedReader;
@@ -32,7 +32,7 @@ public class NoPortalsOptions {
     public final Map<String, SimpleBooleanOption> options = ImmutableMap.of(disableNetherPortal.getName(), disableNetherPortal, disableEndPortal.getName(), disableEndPortal, disableEndGateway.getName(), disableEndGateway);
 
     public NoPortalsOptions(MinecraftServer server) {
-        this.optionsFile = server.getSavePath(WorldSavePath.ROOT).resolve(NoPortals.MOD_ID + ".json");
+        this.optionsFile = server.getWorldPath(LevelResource.ROOT).resolve(NoPortals.MOD_ID + ".json");
         load();
     }
 
@@ -109,7 +109,7 @@ public class NoPortalsOptions {
             NoPortals.LOGGER.error("Failed to write options", e);
         }
         Path backup = optionsFile.getParent().resolve(NoPortals.MOD_ID + ".json_old");
-        Util.backupAndReplace(optionsFile, tempFile, backup);
+        Util.safeReplaceFile(optionsFile, tempFile, backup);
     }
 
     /**
