@@ -1,0 +1,9 @@
+{
+    "noportals:disabled.end": "Эндъ отключенъ на этомъ серверѣ.",
+    "noportals:disabled.endGateway": "Врата Энда отключены на этомъ серверѣ.",
+    "noportals:disabled.nether": "Незеръ отключенъ на этомъ серверѣ.",
+    "noportals:commands.option.reload": "Настройки No Portals перезагружены",
+    "noportals:commands.option.save": "Настройки No Portals сохранены",
+    "noportals:commands.option.query": "Настройка No Portals %s въ данный моментъ установлена въ: %s",
+    "noportals:commands.option.set": "Настройка No Portals %s теперь установлена въ: %s"
+}

@@ -1,0 +1,9 @@
+{
+"noportals:disabled.end": "Енд вимкнено на цьому сервері.",
+"noportals:disabled.endGateway": "На цьому сервері вимкнені портали на острови Енду.",
+"noportals:disabled.nether": "Пекло вимкнене на цьому сервері.",
+"noportals:commands.option.reload": "Налаштування No Portals перезавантаженні",
+"noportals:commands.option.save": "Налаштування No Portals збережені",
+"noportals:commands.option.query": "Опція %s наразі встановлена на: %s",
+"noportals:commands.option.set": "Опція %s тепер встановлена на: %s"
+}
