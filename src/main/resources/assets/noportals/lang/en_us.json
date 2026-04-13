@@ -1,0 +1,9 @@
+{
+    "noportals:disabled.end": "The End is disabled on this server.",
+    "noportals:disabled.endGateway": "End Gateways are disabled on this server.",
+    "noportals:disabled.nether": "The Nether is disabled on this server.",
+    "noportals:commands.option.reload": "No Portals options reloaded",
+    "noportals:commands.option.save": "No Portals options saved",
+    "noportals:commands.option.query": "No Portals option %s is currently set to: %s",
+    "noportals:commands.option.set": "No Portals option %s is now set to: %s"
+}
