@@ -1,5 +1,5 @@
 plugins {
-	id 'net.fabricmc.fabric-loom' version '1.15-SNAPSHOT'
+	id 'net.fabricmc.fabric-loom' version '1.17-SNAPSHOT'
 	id 'maven-publish'
 	id 'me.modmuss50.mod-publish-plugin' version '1.1.0'
 }
@@ -96,8 +96,8 @@ publishMods {
 		projectSlug = "no-portals" // Required for discord webhook
 		accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
 		minecraftVersionRange {
-			start = "26.1"
-			end = "26.1"
+			start = "26.2"
+			end = "26.2"
 		}
 		requires("fabric-api")
 	}
@@ -105,8 +105,8 @@ publishMods {
 		projectId = "ZzkyvOit"
 		accessToken = providers.environmentVariable("MODRINTH_TOKEN")
 		minecraftVersionRange {
-			start = "26.1"
-			end = "26.1"
+			start = "26.2"
+			end = "26.2"
 		}
 	}
 	github {

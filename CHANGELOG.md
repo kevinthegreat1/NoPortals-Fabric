@@ -1,3 +1,8 @@
+## No Portals 1.1.10 for 26.2
+
+Update to 26.2
+
+
 ## No Portals 1.1.9 for 26.1
 
 Update to 26.1
